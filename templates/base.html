@@ -1,0 +1,233 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ThriveAI</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div>
+
+        <!-- LOGO -->
+
+        <h2 class="logo">
+            ThriveAI
+        </h2>
+
+        <!-- USER PROFILE -->
+
+        <div class="user-profile-card">
+
+            <div class="profile-avatar">
+
+                {{ request.user.username|first|upper }}
+
+            </div>
+
+            <div>
+
+                <h5>
+                    {{ request.user.username }}
+                </h5>
+
+                <p>
+                    Productivity Explorer 🚀
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- NAVIGATION -->
+
+        <ul class="nav-links">
+
+            <!-- Dashboard -->
+
+            <li>
+
+                <a href="{% url 'dashboard' %}">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <!-- Streaks -->
+
+            <li>
+
+                <a href="{% url 'streaks' %}">
+
+                    <i class="fa-solid fa-fire"></i>
+
+                    Streaks
+
+                </a>
+
+            </li>
+
+            <!-- Analytics -->
+
+            <li>
+
+                <a href="{% url 'analytics' %}">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+            <!-- Settings -->
+
+            <li>
+
+                <a href="{% url 'settings' %}">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+            <!-- Logout -->
+
+            <li>
+
+                <a href="{% url 'logout' %}">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- BOTTOM -->
+
+    <div class="sidebar-bottom">
+
+        <div class="premium-card">
+
+            <h5>
+                ⚡ AI Productivity
+            </h5>
+
+            <p>
+                Build routines and stay consistent daily.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    <!-- TOP NAVBAR -->
+
+    <div class="top-navbar">
+
+        <div>
+
+            <h4 class="top-title">
+                Welcome Back 👋
+            </h4>
+
+            <p class="top-subtitle">
+                Track habits, health and productivity.
+            </p>
+
+        </div>
+
+        <!-- RIGHT NAV -->
+
+        <div class="top-actions">
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text"
+                       placeholder="Search habits...">
+
+            </div>
+
+            <!-- NOTIFICATION -->
+
+            <div class="notification-icon">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PAGE CONTENT -->
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<!-- Chart JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

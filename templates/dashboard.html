@@ -1,0 +1,776 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<div class="hero-section">
+
+    <div>
+
+        <h1 class="hero-title" id="greeting">
+            Welcome Back 🚀
+        </h1>
+
+        <p class="hero-subtitle">
+            Build consistency. Track wellness. Improve daily.
+        </p>
+
+    </div>
+
+    <div class="clock-card">
+
+        <h5>⏰ Current Time</h5>
+
+        <h1 id="live-clock">
+            00:00:00
+        </h1>
+
+        <p>
+            Stay productive today 🚀
+        </p>
+
+    </div>
+
+</div>
+
+<!-- CATEGORY TABS -->
+
+<div class="category-menu">
+
+    <button onclick="showSection('overview-section')"
+            class="category-btn">
+
+        🏠 Overview
+
+    </button>
+
+    <button onclick="showSection('health-section')"
+            class="category-btn">
+
+        💪 Health
+
+    </button>
+
+    <button onclick="showSection('habits-section')"
+            class="category-btn">
+
+        🔥 Habits
+
+    </button>
+
+    <button onclick="showSection('mood-section')"
+            class="category-btn">
+
+        😊 Mood
+
+    </button>
+
+    <button onclick="showSection('analytics-section')"
+            class="category-btn">
+
+        📈 Analytics
+
+    </button>
+
+    <button onclick="showSection('chat-section')"
+            class="category-btn">
+
+        🤖 AI Coach
+
+    </button>
+
+</div>
+
+<!-- OVERVIEW SECTION -->
+
+<div id="overview-section"
+     class="dashboard-section">
+
+    <div class="analytics-card">
+
+        <h3>
+            🤖 AI Recommendation
+        </h3>
+
+        <p style="margin-top:15px; color:#94a3b8;">
+
+            Based on your activity,
+            your productivity is highest
+            in the morning.
+
+        </p>
+
+    </div>
+
+    <div class="health-card productivity-card">
+
+        <h3>
+            ⚡ Productivity Score
+        </h3>
+
+        <div class="circle-wrap">
+
+            <div class="circle">
+
+                <div class="inside-circle"
+                     id="productivity-score">
+
+                    0%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p>
+            Excellent consistency this week.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- HEALTH SECTION -->
+
+<div id="health-section"
+     class="dashboard-section">
+
+    <div class="health-grid">
+
+        <!-- HEART -->
+
+        <div class="health-card pulse-card">
+
+            <div class="health-header">
+
+                <h3>
+                    ❤️ Heart Rate
+                </h3>
+
+                <div class="pulse-circle"></div>
+
+            </div>
+
+            <h1 id="heartbeat-value">
+                72 BPM
+            </h1>
+
+            <button onclick="changeHeartbeat()"
+                    class="health-btn">
+
+                Check Heartbeat
+
+            </button>
+
+        </div>
+
+        <!-- STEPS -->
+
+        <div class="health-card">
+
+            <h3>
+                👣 Daily Steps
+            </h3>
+
+            <h1 id="steps-counter">
+                0
+            </h1>
+
+            <p>
+                Goal: 10,000 Steps
+            </p>
+
+            <div class="progress modern-progress">
+
+                <div class="progress-bar modern-bar"
+                     id="steps-progress"
+                     style="width:0%">
+
+                </div>
+
+            </div>
+
+            <button onclick="increaseSteps()"
+                    class="health-btn">
+
+                Start Walking
+
+            </button>
+
+        </div>
+
+        <!-- WATER -->
+
+        <div class="health-card">
+
+            <h3>
+                💧 Water Intake
+            </h3>
+
+            <h1 id="water-count">
+                0 / 8
+            </h1>
+
+            <div class="water-glasses">
+
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+                <div class="glass"></div>
+
+            </div>
+
+            <button onclick="drinkWater()"
+                    class="health-btn">
+
+                Drink Water
+
+            </button>
+
+        </div>
+
+        <!-- SLEEP -->
+
+        <div class="health-card">
+
+            <h3>
+                😴 Sleep Score
+            </h3>
+
+            <h1>
+                8.2h
+            </h1>
+
+            <p>
+                Excellent recovery today.
+            </p>
+
+            <div class="sleep-bar">
+
+                <div class="sleep-fill"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- HABITS -->
+
+<div id="habits-section"
+     class="dashboard-section">
+
+    <div class="section-title">
+
+        <h2>
+            Daily Habits 🔥
+        </h2>
+
+    </div>
+
+    <div class="habit-grid">
+
+        {% for habit in habits %}
+
+        <div class="modern-habit-card">
+
+            <div class="habit-top">
+
+                <div>
+
+                    <h3>
+                        {{ habit.title }}
+                    </h3>
+
+                    <p>
+                        {{ habit.description }}
+                    </p>
+
+                </div>
+
+                <span class="habit-badge">
+
+                    {{ habit.category }}
+
+                </span>
+
+            </div>
+
+            <div class="streak-section">
+
+                🔥 {{ habit.streak }} Day Streak
+
+            </div>
+
+            <div class="progress modern-progress mt-3">
+
+                <div class="progress-bar modern-bar"
+                     style="width:{{ habit.total_completed }}0%">
+
+                </div>
+
+            </div>
+
+            <a href="{% url 'complete_habit' habit.id %}"
+               class="complete-modern-btn">
+
+                ✅ Complete
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- MOOD -->
+
+<div id="mood-section"
+     class="dashboard-section">
+
+    <div class="analytics-card">
+
+        <h3>
+            😊 Daily Mood Tracker
+        </h3>
+
+        <div class="mood-container">
+
+            <button onclick="setMood('😄')"
+                    class="mood-btn">
+
+                😄
+
+            </button>
+
+            <button onclick="setMood('🙂')"
+                    class="mood-btn">
+
+                🙂
+
+            </button>
+
+            <button onclick="setMood('😴')"
+                    class="mood-btn">
+
+                😴
+
+            </button>
+
+            <button onclick="setMood('😔')"
+                    class="mood-btn">
+
+                😔
+
+            </button>
+
+        </div>
+
+        <h1 id="selected-mood"
+            style="margin-top:20px;">
+
+            😄
+
+        </h1>
+
+    </div>
+
+</div>
+
+<!-- ANALYTICS -->
+
+<div id="analytics-section"
+     class="dashboard-section">
+
+    <div class="analytics-card">
+
+        <h3>
+            📈 Weekly Productivity
+        </h3>
+
+        <canvas id="habitChart"></canvas>
+
+    </div>
+
+</div>
+
+<!-- AI CHAT -->
+
+<div id="chat-section"
+     class="dashboard-section">
+
+    <div class="chat-container show-chat">
+
+        <div class="chat-header">
+
+            <h3>
+                ThriveAI Coach
+            </h3>
+
+        </div>
+
+        <div class="chat-body"
+             id="chat-body">
+
+            <div class="bot-message">
+
+                👋 Hi! I'm your AI wellness coach.
+
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+
+            <input type="text"
+                   id="chat-input"
+                   placeholder="Ask something...">
+
+            <button onclick="sendMessage()">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div id="toast-box"></div>
+
+<script>
+
+/* SECTION SWITCH */
+
+function showSection(sectionId){
+
+    const sections =
+    document.querySelectorAll(
+        ".dashboard-section"
+    );
+
+    sections.forEach(section => {
+
+        section.style.display =
+        "none";
+
+    });
+
+    document.getElementById(
+        sectionId
+    ).style.display =
+    "block";
+}
+
+/* DEFAULT TAB */
+
+showSection("overview-section");
+
+/* CLOCK */
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById(
+        "live-clock"
+    ).innerText =
+    now.toLocaleTimeString();
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/* GREETING */
+
+function updateGreeting(){
+
+    const hour = new Date().getHours();
+
+    let greeting = "";
+
+    if(hour < 12){
+
+        greeting = "Good Morning ☀️";
+
+    }else if(hour < 18){
+
+        greeting = "Good Afternoon 🌤️";
+
+    }else{
+
+        greeting = "Good Evening 🌙";
+    }
+
+    document.getElementById(
+        "greeting"
+    ).innerText = greeting;
+}
+
+updateGreeting();
+
+/* HEALTH */
+
+let steps =
+parseInt(localStorage.getItem("steps")) || 0;
+
+let water =
+parseInt(localStorage.getItem("water")) || 0;
+
+function increaseSteps(){
+
+    steps += 1000;
+
+    if(steps > 10000){
+        steps = 10000;
+    }
+
+    localStorage.setItem(
+        "steps",
+        steps
+    );
+
+    document.getElementById(
+        "steps-counter"
+    ).innerText = steps;
+
+    document.getElementById(
+        "steps-progress"
+    ).style.width =
+    (steps / 100) + "%";
+
+    updateProductivity();
+}
+
+function drinkWater(){
+
+    if(water < 8){
+
+        water++;
+
+        localStorage.setItem(
+            "water",
+            water
+        );
+
+        updateWaterUI();
+
+        updateProductivity();
+    }
+}
+
+function updateWaterUI(){
+
+    document.getElementById(
+        "water-count"
+    ).innerText =
+    water + " / 8";
+
+    const glasses =
+    document.querySelectorAll(".glass");
+
+    glasses.forEach((glass,index)=>{
+
+        if(index < water){
+
+            glass.classList.add("active");
+
+        }else{
+
+            glass.classList.remove("active");
+        }
+    });
+}
+
+function updateProductivity(){
+
+    let score =
+    Math.floor(
+        (steps / 10000) * 70
+        +
+        (water / 8) * 30
+    );
+
+    document.getElementById(
+        "productivity-score"
+    ).innerText =
+    score + "%";
+}
+
+updateWaterUI();
+updateProductivity();
+
+/* HEART */
+
+function changeHeartbeat(){
+
+    const bpm =
+    Math.floor(Math.random()*30)+60;
+
+    document.getElementById(
+        "heartbeat-value"
+    ).innerText =
+    bpm + " BPM";
+}
+
+/* MOOD */
+
+function setMood(mood){
+
+    localStorage.setItem(
+        "mood",
+        mood
+    );
+
+    document.getElementById(
+        "selected-mood"
+    ).innerText = mood;
+}
+
+const savedMood =
+localStorage.getItem("mood");
+
+if(savedMood){
+
+    document.getElementById(
+        "selected-mood"
+    ).innerText = savedMood;
+}
+
+/* AI CHAT */
+
+async function sendMessage(){
+
+    const input =
+    document.getElementById(
+        "chat-input"
+    );
+
+    const message =
+    input.value.trim();
+
+    if(message === "") return;
+
+    const chatBody =
+    document.getElementById(
+        "chat-body"
+    );
+
+    const userDiv =
+    document.createElement("div");
+
+    userDiv.classList.add(
+        "user-message"
+    );
+
+    userDiv.innerText = message;
+
+    chatBody.appendChild(userDiv);
+
+    input.value = "";
+
+    const response = await fetch(
+        "/ai-chat/",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                "application/x-www-form-urlencoded",
+
+                "X-CSRFToken":
+                "{{ csrf_token }}"
+            },
+
+            body:
+            "message=" +
+            encodeURIComponent(message)
+        }
+    );
+
+    const data =
+    await response.json();
+
+    const botDiv =
+    document.createElement("div");
+
+    botDiv.classList.add(
+        "bot-message"
+    );
+
+    botDiv.innerText =
+    data.reply;
+
+    chatBody.appendChild(botDiv);
+
+    chatBody.scrollTop =
+    chatBody.scrollHeight;
+}
+
+/* CHART */
+
+document.addEventListener(
+"DOMContentLoaded",
+
+function(){
+
+    const ctx =
+    document.getElementById(
+        "habitChart"
+    );
+
+    new Chart(ctx,{
+
+        type:'line',
+
+        data:{
+
+            labels:[
+                'Mon',
+                'Tue',
+                'Wed',
+                'Thu',
+                'Fri',
+                'Sat',
+                'Sun'
+            ],
+
+            datasets:[{
+
+                label:'Productivity',
+
+                data:[4,6,5,8,9,7,10],
+
+                borderColor:'#8b5cf6',
+
+                backgroundColor:
+                'rgba(139,92,246,0.2)',
+
+                fill:true,
+
+                tension:0.4
+            }]
+        }
+    });
+
+});
+
+</script>
+
+{% endblock %}

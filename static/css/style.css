@@ -1,0 +1,304 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f172a;
+    font-family:'Poppins',sans-serif;
+    color:white;
+}
+
+/* MAIN LAYOUT */
+
+.main-layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:30px 20px;
+    position:fixed;
+    height:100vh;
+    overflow-y:auto;
+    border-right:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#8b5cf6;
+    margin-bottom:40px;
+    text-align:center;
+}
+
+.sidebar-btn{
+    width:100%;
+    border:none;
+    background:#1f2937;
+    color:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.sidebar-btn:hover{
+    background:#8b5cf6;
+    transform:translateX(5px);
+}
+
+/* CONTENT */
+
+.dashboard-content{
+    margin-left:260px;
+    width:100%;
+    padding:35px;
+}
+
+/* HERO */
+
+.hero-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+    gap:20px;
+}
+
+.hero-title{
+    font-size:42px;
+    font-weight:700;
+}
+
+.hero-subtitle{
+    margin-top:10px;
+    color:#94a3b8;
+}
+
+.clock-card{
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    min-width:240px;
+    text-align:center;
+}
+
+#live-clock{
+    font-size:34px;
+    color:#8b5cf6;
+    margin:15px 0;
+}
+
+/* SECTIONS */
+
+.dashboard-section{
+    display:none;
+}
+
+/* CARDS */
+
+.health-grid,
+.habit-grid,
+.overview-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.health-card,
+.modern-habit-card,
+.analytics-card,
+.overview-card{
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.health-card:hover,
+.modern-habit-card:hover,
+.analytics-card:hover,
+.overview-card:hover{
+    transform:translateY(-5px);
+}
+
+/* BUTTONS */
+
+.health-btn,
+.complete-modern-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    background:#8b5cf6;
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.health-btn:hover,
+.complete-modern-btn:hover{
+    transform:scale(1.05);
+}
+
+/* WATER */
+
+.water-glasses{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.glass{
+    width:35px;
+    height:55px;
+    border-radius:10px;
+    background:#334155;
+    opacity:0.3;
+    transition:0.3s;
+}
+
+.glass.active{
+    background:#38bdf8;
+    opacity:1;
+    transform:translateY(-5px);
+}
+
+/* MOOD */
+
+.mood-container{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.mood-btn{
+    width:65px;
+    height:65px;
+    border:none;
+    border-radius:16px;
+    font-size:28px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.mood-btn:hover{
+    background:#8b5cf6;
+    transform:translateY(-5px);
+}
+
+/* PROGRESS */
+
+.modern-progress{
+    width:100%;
+    height:10px;
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.modern-bar{
+    height:100%;
+    background:#8b5cf6;
+}
+
+/* CHAT */
+
+.chat-container{
+    background:#111827;
+    border-radius:20px;
+    padding:25px;
+    margin-top:20px;
+}
+
+.chat-body{
+    height:350px;
+    overflow-y:auto;
+    margin:20px 0;
+}
+
+.user-message,
+.bot-message{
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:12px;
+    max-width:80%;
+}
+
+.user-message{
+    background:#8b5cf6;
+    margin-left:auto;
+}
+
+.bot-message{
+    background:#1f2937;
+}
+
+.chat-input-area{
+    display:flex;
+    gap:10px;
+}
+
+.chat-input-area input{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+}
+
+.chat-input-area button{
+    padding:14px 20px;
+    border:none;
+    border-radius:12px;
+    background:#8b5cf6;
+    color:white;
+    cursor:pointer;
+}
+
+/* TOAST */
+
+#toast-box{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:9999;
+}
+
+.toast-msg{
+    background:#8b5cf6;
+    padding:14px 20px;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .dashboard-content{
+        margin-left:0;
+    }
+
+    .hero-section{
+        flex-direction:column;
+    }
+}
