@@ -1,0 +1,1 @@
+web: gunicorn Thrive AI - Habit Flow AI Dashboard.wsgi:application
